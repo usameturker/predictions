@@ -8,7 +8,7 @@ def page1():
 
     st.image('https://www.revechat.com/wp-content/uploads/2016/09/Website-Engagement.jpg', use_column_width=True)
 
-    st.title("Please select the page engagement values.")
+    st.title("Please select the page engagement values below:")
 
     usp = st.number_input("What is the unit session percentage?", 0.00, 1.00, step=0.01)
     pw = st.slider("What is the total page views?", 0, 10000, step=1)
@@ -34,10 +34,10 @@ def page1():
 
         if prediction>0:
 
-            st.success("Sales are expected for the related product")
+            st.success("Sales expected", icon="✅")
         else:
 
-            st.error('Sales are NOT expected for the related product')
+            st.error('Sales NOT expected', icon="❌")
 
 def page2():
     
@@ -65,11 +65,20 @@ def page2():
         st.image(temp_file.name, caption="Uploaded Image", width=300)
 
         jsonfile = model.predict(temp_file.name).json()
-        predicted_classes = str(jsonfile["predictions"][0]["predicted_classes"][0])
+        try:
+            predicted_classes = jsonfile["predictions"][0]["predicted_classes"]
+            
+            st.subheader("Predicted Category:")
 
-        st.subheader("Predicted Category:")
-
-        st.success(predicted_classes, icon="✅")
+            if len(predicted_classes) == 1:
+                st.success(predicted_classes[0], icon="✅")
+            elif len(predicted_classes) == 2:
+                st.success(predicted_classes[0] + "   OR  " + predicted_classes[1], icon="✅")
+            
+            
+            
+        except IndexError as e:
+            st.error('This image could not be predicted.')
 
         os.unlink(temp_file.name) 
 
@@ -81,15 +90,29 @@ def page2():
                 temp_file.write(response.read())
 
         jsonfile = model.predict(temp_file.name).json()
-        predicted_classes = str(jsonfile["predictions"][0]["predicted_classes"][0])
+        
+        try:
+            predicted_classes = jsonfile["predictions"][0]["predicted_classes"]
+            
+            st.subheader("Predicted Category:")
 
-        st.subheader("Predicted Category:")
-
-        st.success(predicted_classes, icon="✅")
+            if len(predicted_classes) == 1:
+                st.success(predicted_classes[0], icon="✅")
+            elif len(predicted_classes) == 2:
+                st.success(predicted_classes[0] + "   OR  " + predicted_classes[1], icon="✅")
+            
+            
+            
+        except IndexError as e:
+            st.error('This image could not be predicted.')
+        
 
         os.unlink(temp_file.name) 
 
+
+st.sidebar.image('https://oneamz.com/wp-content/uploads/2021/10/logo-black.8bf86065-e1633441524735.png')        
 selected_page = st.sidebar.radio("Select the Prediction Model", ("Sales Prediction", "Category Prediction"))
+
 
 if selected_page == "Sales Prediction":
     page1()
