@@ -4,6 +4,11 @@ import pickle
 
 
 def page1():
+
+    import streamlit as st
+    import pandas as pd
+    import pickle
+    
     st.header("Sales Forecast based on Page Engagement")
 
     st.image('https://www.revechat.com/wp-content/uploads/2016/09/Website-Engagement.jpg', use_column_width=True)
