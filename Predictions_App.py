@@ -4,11 +4,6 @@ import pickle
 
 
 def page1():
-
-    import streamlit as st
-    import pandas as pd
-    import pickle
-    
     st.header("Sales Forecast based on Page Engagement")
 
     st.image('https://www.revechat.com/wp-content/uploads/2016/09/Website-Engagement.jpg', use_column_width=True)
@@ -74,8 +69,10 @@ def page2():
             predicted_classes = jsonfile["predictions"][0]["predicted_classes"]
             
             st.subheader("Predicted Category:")
-
-            if len(predicted_classes) == 1:
+            
+            if len(predicted_classes) == 0:
+                st.error('Could not Expected')
+            elif len(predicted_classes) == 1:
                 st.success(predicted_classes[0], icon="✅")
             elif len(predicted_classes) == 2:
                 st.success(predicted_classes[0] + "   OR  " + predicted_classes[1], icon="✅")
@@ -100,7 +97,9 @@ def page2():
             predicted_classes = jsonfile["predictions"][0]["predicted_classes"]
             
             st.subheader("Predicted Category:")
-
+            
+            if len(predicted_classes) == 0:
+                st.error('Could not Expected')
             if len(predicted_classes) == 1:
                 st.success(predicted_classes[0], icon="✅")
             elif len(predicted_classes) == 2:
