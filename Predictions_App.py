@@ -71,7 +71,7 @@ def page2():
             st.subheader("Predicted Category:")
             
             if len(predicted_classes) == 0:
-                st.error('Could not Expected')
+                st.error('Could not Predicted')
             elif len(predicted_classes) == 1:
                 st.success(predicted_classes[0], icon="✅")
             elif len(predicted_classes) == 2:
@@ -99,7 +99,7 @@ def page2():
             st.subheader("Predicted Category:")
             
             if len(predicted_classes) == 0:
-                st.error('Could not Expected')
+                st.error('Could not Predicted')
             if len(predicted_classes) == 1:
                 st.success(predicted_classes[0], icon="✅")
             elif len(predicted_classes) == 2:
