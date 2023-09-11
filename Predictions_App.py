@@ -75,7 +75,10 @@ def page2():
             elif len(predicted_classes) == 1:
                 st.success(predicted_classes[0], icon="✅")
             elif len(predicted_classes) == 2:
-                st.success(predicted_classes[0] + "   OR  " + predicted_classes[1], icon="✅")
+                if predicted_classes[0]>predicted_classes[1]:
+                    st.success(predicted_classes[0], icon="✅")
+                else:
+                    st.success(predicted_classes[1], icon="✅")
             
             
             
@@ -103,7 +106,10 @@ def page2():
             if len(predicted_classes) == 1:
                 st.success(predicted_classes[0], icon="✅")
             elif len(predicted_classes) == 2:
-                st.success(predicted_classes[0] + "   OR  " + predicted_classes[1], icon="✅")
+                if predicted_classes[0]>predicted_classes[1]:
+                    st.success(predicted_classes[0], icon="✅")
+                else:
+                    st.success(predicted_classes[1], icon="✅")
             
             
             
