@@ -11,7 +11,7 @@ def page1():
     st.title("Please select the page engagement values below:")
 
     usp = st.number_input("What is the unit session percentage?", 0.00, 1.00, step=0.01)
-    pw = st.slider("What is the total page views?", 0, 10000, step=1)
+    pw = st.number_input("What is the total page views?", 0, 10000, step=10)
     ppw = st.number_input("What is the total percentage of page views?", 0.00, 1.00, step=0.01)
 
 
