@@ -1,3 +1,3 @@
 # predictions
 
-oneamzpredictions.streamlit.app
+https://oneamzpredictions.streamlit.app
